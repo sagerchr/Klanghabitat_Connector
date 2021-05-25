@@ -245,8 +245,37 @@ void KlanghabitatConnectorAudioProcessorEditor::connectButtonClicked(){
 void KlanghabitatConnectorAudioProcessorEditor::connectTarget(){
     
     String myIPAdress;
-    String IPAddressTarget = (String)(deviceList.getItemText(deviceList.getSelectedId()-1).substring(0, 15));
-    
+    String IPAddressTargetREAD = (String)(deviceList.getItemText(deviceList.getSelectedId()-1).substring(0, 15));
+   
+    juce::String OS;
+    juce::String IPAddressTarget;
+    OS = SystemStats::getOperatingSystemName();
+
+    juce::String IPAddressTemp;
+    int position = 0;
+    int eraseProtect = 0;
+    if (OS == "Windows 10") {
+        for (int i = 0; i < 15; i++) {
+
+            if (IPAddressTargetREAD.substring(i, i + 1) == ".") {
+                position = 0;
+                eraseProtect = 0;
+            }
+            position++;
+
+
+
+            if (IPAddressTargetREAD.substring(i, i + 1) != "0" || eraseProtect == 1) {
+                if (IPAddressTargetREAD.substring(i, i + 1) != ".") {
+                    eraseProtect = 1;
+                }
+                IPAddressTarget += IPAddressTargetREAD.substring(i, i + 1);
+            }
+        }
+    }
+    else {
+        IPAddressTarget = IPAddressTargetREAD;
+    }
     allIpAdresses = juce::IPAddress::getAllAddresses();
         //**********************Finding the all Ethernet adresses used by this mashine*******************//
         for (int i=0; i< allIpAdresses.size(); i++){
@@ -270,8 +299,37 @@ void KlanghabitatConnectorAudioProcessorEditor::connectTarget(){
 void KlanghabitatConnectorAudioProcessorEditor::disconnectTarget(){
     
     String myIPAdress;
-    String IPAddressTarget = (String)(deviceList.getItemText(deviceList.getSelectedId()-1).substring(0, 15));
-    
+    String IPAddressTargetREAD = (String)(deviceList.getItemText(deviceList.getSelectedId()-1).substring(0, 15));
+
+    juce::String OS;
+    juce::String IPAddressTarget;
+    OS = SystemStats::getOperatingSystemName();
+
+    juce::String IPAddressTemp;
+    int position = 0;
+    int eraseProtect = 0;
+    if (OS == "Windows 10") {
+        for (int i = 0; i < 15; i++) {
+
+            if (IPAddressTargetREAD.substring(i, i + 1) == ".") {
+                position = 0;
+                eraseProtect = 0;
+            }
+            position++;
+
+
+
+            if (IPAddressTargetREAD.substring(i, i + 1) != "0" || eraseProtect == 1) {
+                if (IPAddressTargetREAD.substring(i, i + 1) != ".") {
+                    eraseProtect = 1;
+                }
+                IPAddressTarget += IPAddressTargetREAD.substring(i, i + 1);
+            }
+        }
+    }
+    else {
+        IPAddressTarget = IPAddressTargetREAD;
+    }
     sender.connect (IPAddressTarget, 9011);
     sender.send ("/Disconnection", myIPAdress); //sending "/Disconnection" + IPAdress will stop target to send downstream
     sender.disconnect();
