@@ -230,7 +230,6 @@ void KlanghabitatConnectorAudioProcessorEditor::connectButtonClicked(){
         connectButton.setColour (TextButton::textColourOffId, Colours::green);
         connected = true;
         deviceList.setEnabled(false);
-        colorChange(2);
     }
     else {
         disconnectTarget(); //Disconnect from the current connected target
@@ -239,6 +238,9 @@ void KlanghabitatConnectorAudioProcessorEditor::connectButtonClicked(){
         connectButton.setColour (TextButton::textColourOffId, Colours::darkorange);
         connected = false;
         deviceList.setEnabled(true);
+        colorChange(0);
+        waveform_left.clearWaveform();
+        waveform_right.clearWaveform();
     }
 }
 
@@ -339,6 +341,8 @@ void KlanghabitatConnectorAudioProcessorEditor::disconnectTarget(){
 
 
 void KlanghabitatConnectorAudioProcessorEditor::oscMessageReceived (const OSCMessage& message){
+    int colorID;
+
     if (message.getAddressPattern().toString() == "/klanghabitat/DeviceInfo"){
          OSCBoxDeviceInfo.addOSCMessage (message);
         for (auto* arg = message.begin(); arg != message.end(); ++arg)
@@ -399,6 +403,17 @@ void KlanghabitatConnectorAudioProcessorEditor::oscMessageReceived (const OSCMes
                 for (auto* arg = message.begin(); arg != message.end(); ++arg)
             Threshold.setValue(arg->getFloat32());
         }
+        if (message.getAddressPattern().toString() == "/colour") {
+            for (auto* arg = message.begin(); arg != message.end(); ++arg)
+                colorID = arg->getFloat32();
+                colorChange(colorID);
+                waveform_left.colour(colorID);
+                waveform_right.colour(colorID);
+        }
+
+
+
+
         if (message.getAddressPattern().toString() == "/BypassLeft"){
                 for (auto* arg = message.begin(); arg != message.end(); ++arg)
             if(arg->getFloat32() == 1){
@@ -511,16 +526,16 @@ void KlanghabitatConnectorAudioProcessorEditor::colorChange(int colorID)
     Colour color = Colours::grey;
 
     if (colorID == 0) {
-        color = Colours::magenta;
+        color = Colours::grey;
     }
     if (colorID == 1) {
-        color = Colours::magenta;
+        color = Colours::cornflowerblue;
     }
     if (colorID == 2) {
-        color = Colours::magenta;
+        color = Colours::lightgreen;
     }
     if (colorID == 3) {
-        color = Colours::grey;
+        color = Colours::magenta;
     }
 
     Attack.setColour(Slider::thumbColourId, color);

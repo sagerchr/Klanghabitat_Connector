@@ -9,6 +9,13 @@
 */
 
 #include "WaveForm.h"
+void Waveform::clearWaveform()
+    {
+    for (int i = 0; i < 1000; i++) { ch_array[i] = 0; }
+    for (int i = 0; i < 1000; i++) { gainreduct_array[i] = 0; }
+    colour(0);
+    repaint();
+    }
 
 
 void Waveform::addSample(int sample){
@@ -39,6 +46,23 @@ void Waveform::addGainreduct(int sample) {
 
 }
 
+
+void Waveform::colour(int colorID) {
+    
+    if (colorID == 0) {
+        color = Colours::grey;
+    }
+    if (colorID == 1) {
+        color = Colours::cornflowerblue;
+    }
+    if (colorID == 2) {
+        color = Colours::lightgreen;
+    }
+    if (colorID == 3) {
+        color = Colours::magenta;
+    }
+}
+
 /*Update the graph*/
 void Waveform::update(){
    repaint();
@@ -61,7 +85,7 @@ void Waveform::paint (Graphics& g){
 
 
 
-    g.setColour(Colours::magenta);
+    g.setColour(color);
         for (int i = 0; i < 500; i++) {
             g.fillRect(i + xPosition, middlepoint - (gainreduct_array[i] / 2), 1, gainreduct_array[i] + 1);
         }

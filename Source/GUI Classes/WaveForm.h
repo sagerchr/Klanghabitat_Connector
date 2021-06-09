@@ -26,7 +26,8 @@ public:
     void addSample(int sample);
     void addGainreduct(int sample);
     void update();
-
+    void colour(int colorID);
+    void clearWaveform();
     
     
     void paint (Graphics& g) override;
@@ -38,5 +39,5 @@ private:
     int ch_array[1000];
     int gainreduct_array[1000];
     int gainreduct = 0;
-    
+    Colour color = Colours::grey;
 };
