@@ -48,6 +48,8 @@ public:
     void updateToggleState (juce::Button* button, juce::String name);
     
     void styleMenuChanged();
+
+    void colorChange(int colorID);
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.

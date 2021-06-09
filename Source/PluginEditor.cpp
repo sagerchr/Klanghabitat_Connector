@@ -15,7 +15,7 @@
 KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEditor (KlanghabitatConnectorAudioProcessor& p)
     : AudioProcessorEditor (&p), processor (p)
 {
-    
+    Colour color = Colours::grey;
     
     //This instance is used for establishing the connection to target. It listens on port 9010
     oscReceiver.addListener(this);
@@ -25,10 +25,10 @@ KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEd
     oscStreamer.addListener(this);
     oscStreamer.connect (9002); //connect here the Reciver on startup so it will listen to the incumming Downstream from Target
     
-    waveform_left.setBounds (160, 100, 520, 100);
+    waveform_left.setBounds (160, 100, 510, 100);
     addAndMakeVisible (waveform_left);
     
-    waveform_right.setBounds (160, 250, 520, 100);
+    waveform_right.setBounds (160, 250, 510, 100);
     addAndMakeVisible (waveform_right);
     
     Device_Incoming_Message.setBounds (10, 10, 130, 25);
@@ -42,54 +42,54 @@ KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEd
  
        
     Attack.setBounds(700, 80, 120, 120);
-    Attack.setRange(0.1,255, 1.0f);
+    Attack.setRange(0.1,120, 0.1f);
     Attack.setTextValueSuffix (" ms");
     Attack.setSliderStyle(juce::Slider::RotaryVerticalDrag);
     Attack.setTextBoxStyle(Slider::TextEntryBoxPosition::TextBoxBelow, true, 100, 20);
     addAndMakeVisible (Attack);
     AttackLabel.setText ("attack", dontSendNotification);
     AttackLabel.attachToComponent (&Attack, false);
-    Attack.setColour (Slider::thumbColourId, Colours::orange);
-    Attack.setColour (Slider::rotarySliderFillColourId, Colours::darkorange);
+    Attack.setColour (Slider::thumbColourId, color);
+    Attack.setColour (Slider::rotarySliderFillColourId, color);
     AttackLabel.setJustificationType(Justification::horizontallyCentred);
     Attack.addListener(this);
     
     Release.setBounds(700, 230, 120, 120);
-    Release.setRange(0.1,255, 1.0f);
+    Release.setRange(10,500, 10.0f);
     Release.setTextValueSuffix (" ms");
     Release.setSliderStyle(juce::Slider::RotaryVerticalDrag);
     Release.setTextBoxStyle(Slider::TextEntryBoxPosition::TextBoxBelow, true, 100, 20);
     addAndMakeVisible (Release);
     ReleaseLabel.setText ("release", dontSendNotification);
     ReleaseLabel.attachToComponent (&Release, false);
-    Release.setColour (Slider::thumbColourId, Colours::orange);
-    Release.setColour (Slider::rotarySliderFillColourId, Colours::darkorange);
+    Release.setColour (Slider::thumbColourId, color);
+    Release.setColour (Slider::rotarySliderFillColourId, color);
     ReleaseLabel.setJustificationType(Justification::horizontallyCentred);
     Release.addListener(this);
     
     Ratio.setBounds(30, 230, 120, 120);
-    Ratio.setRange(0.1,255, 1.0f);
+    Ratio.setRange(0.0,20, 1.0f);
     Ratio.setTextValueSuffix (" ");
     Ratio.setSliderStyle(juce::Slider::RotaryVerticalDrag);
     Ratio.setTextBoxStyle(Slider::TextEntryBoxPosition::TextBoxBelow, true, 100, 20);
     addAndMakeVisible (Ratio);
     RatioLabel.setText ("ratio", dontSendNotification);
     RatioLabel.attachToComponent (&Ratio, false);
-    Ratio.setColour (Slider::thumbColourId, Colours::orange);
-    Ratio.setColour (Slider::rotarySliderFillColourId, Colours::darkorange);
+    Ratio.setColour (Slider::thumbColourId, color);
+    Ratio.setColour (Slider::rotarySliderFillColourId, color);
     RatioLabel.setJustificationType(Justification::horizontallyCentred);
     Ratio.addListener(this);
     
     Threshold.setBounds(30, 80, 120, 120);
-    Threshold.setRange(0.1,255, 1.0f);
+    Threshold.setRange(-20.0,0, 0.1f);
     Threshold.setTextValueSuffix (" dB");
     Threshold.setSliderStyle(juce::Slider::RotaryVerticalDrag);
     Threshold.setTextBoxStyle(Slider::TextEntryBoxPosition::TextBoxBelow, true, 100, 20);
     addAndMakeVisible (Threshold);
     ThresholdLabel.setText ("threshold", dontSendNotification);
     ThresholdLabel.attachToComponent (&Threshold, false);
-    Threshold.setColour (Slider::thumbColourId, Colours::orange);
-    Threshold.setColour (Slider::rotarySliderFillColourId, Colours::darkorange);
+    Threshold.setColour (Slider::thumbColourId, color);
+    Threshold.setColour (Slider::rotarySliderFillColourId, color);
     ThresholdLabel.setJustificationType(Justification::horizontallyCentred);
     Threshold.addListener(this);
     
@@ -101,8 +101,8 @@ KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEd
     addAndMakeVisible (InGain);
     InGainLabel.setText ("input gain", dontSendNotification);
     InGainLabel.attachToComponent (&InGain, false);
-    InGain.setColour (Slider::thumbColourId, Colours::orange);
-    InGain.setColour (Slider::rotarySliderFillColourId, Colours::darkorange);
+    InGain.setColour (Slider::thumbColourId, color);
+    InGain.setColour (Slider::rotarySliderFillColourId, color);
     InGainLabel.setJustificationType(Justification::horizontallyCentred);
     
     OutGain.setBounds(700, 380, 120, 120);
@@ -113,8 +113,8 @@ KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEd
     addAndMakeVisible (OutGain);
     OutGainLabel.setText ("output gain", dontSendNotification);
     OutGainLabel.attachToComponent (&OutGain, false);
-    OutGain.setColour (Slider::thumbColourId, Colours::orange);
-    OutGain.setColour (Slider::rotarySliderFillColourId, Colours::darkorange);
+    OutGain.setColour (Slider::thumbColourId, color);
+    OutGain.setColour (Slider::rotarySliderFillColourId, color);
     OutGainLabel.setJustificationType(Justification::horizontallyCentred);
     
     MSButton.setBounds(180, 400, 120, 30);
@@ -230,6 +230,7 @@ void KlanghabitatConnectorAudioProcessorEditor::connectButtonClicked(){
         connectButton.setColour (TextButton::textColourOffId, Colours::green);
         connected = true;
         deviceList.setEnabled(false);
+        colorChange(2);
     }
     else {
         disconnectTarget(); //Disconnect from the current connected target
@@ -363,10 +364,19 @@ void KlanghabitatConnectorAudioProcessorEditor::oscMessageReceived (const OSCMes
                 for (auto* arg = message.begin(); arg != message.end(); ++arg)
                 waveform_left.addSample(arg->getInt32());
         }
+        if (message.getAddressPattern().toString() == "/VALUE/Level/CH1/GAINREDICTION") {
+            for (auto* arg = message.begin(); arg != message.end(); ++arg)
+                waveform_left.addGainreduct(arg->getInt32());
+        }
         
         if (message.getAddressPattern().toString() == "/VALUE/Level/CH2/RMS"){
                 for (auto* arg = message.begin(); arg != message.end(); ++arg)
                 waveform_right.addSample(arg->getInt32());
+        }
+
+        if (message.getAddressPattern().toString() == "/VALUE/Level/CH2/GAINREDICTION") {
+            for (auto* arg = message.begin(); arg != message.end(); ++arg)
+                waveform_right.addGainreduct(arg->getInt32());
         }
 
         if (message.getAddressPattern().toString() == "/Watchdog"){
@@ -375,23 +385,23 @@ void KlanghabitatConnectorAudioProcessorEditor::oscMessageReceived (const OSCMes
         }
         if (message.getAddressPattern().toString() == "/attack"){
                 for (auto* arg = message.begin(); arg != message.end(); ++arg)
-            Attack.setValue(arg->getInt32());
+            Attack.setValue(arg->getFloat32());
         }
         if (message.getAddressPattern().toString() == "/release"){
                 for (auto* arg = message.begin(); arg != message.end(); ++arg)
-            Release.setValue(arg->getInt32());
+            Release.setValue(arg->getFloat32());
         }
         if (message.getAddressPattern().toString() == "/ratio"){
                 for (auto* arg = message.begin(); arg != message.end(); ++arg)
-            Ratio.setValue(arg->getInt32());
+            Ratio.setValue(arg->getFloat32());
         }
         if (message.getAddressPattern().toString() == "/threshold"){
                 for (auto* arg = message.begin(); arg != message.end(); ++arg)
-            Threshold.setValue(arg->getInt32());
+            Threshold.setValue(arg->getFloat32());
         }
         if (message.getAddressPattern().toString() == "/BypassLeft"){
                 for (auto* arg = message.begin(); arg != message.end(); ++arg)
-            if(arg->getInt32() == 1){
+            if(arg->getFloat32() == 1){
                 LeftBypassButton.setButtonText("Bypass");
                 L_BYPASS = 1;
             }
@@ -402,7 +412,7 @@ void KlanghabitatConnectorAudioProcessorEditor::oscMessageReceived (const OSCMes
         }
         if (message.getAddressPattern().toString() == "/BypassRight"){
                 for (auto* arg = message.begin(); arg != message.end(); ++arg)
-            if(arg->getInt32() == 1){
+            if(arg->getFloat32() == 1){
                 RightBypassButton.setButtonText("Bypass");
                 R_BYPASS = 1;
             }
@@ -421,19 +431,19 @@ void KlanghabitatConnectorAudioProcessorEditor::sliderValueChanged(juce::Slider*
     
     if(slider == &Attack){
         sender.connect (TargetIP, 9001);
-        sender.send ("/attack", (int)slider->getValue());
+        sender.send ("/attack", (float)slider->getValue());
     }
     if(slider == &Release){
         sender.connect (TargetIP, 9001);
-        sender.send ("/release", (int)slider->getValue());
+        sender.send ("/release", (float)slider->getValue());
     }
     if(slider == &Ratio){
         sender.connect (TargetIP, 9001);
-        sender.send ("/ratio", (int)slider->getValue());
+        sender.send ("/ratio", (float)slider->getValue());
     }
     if(slider == &Threshold){
         sender.connect (TargetIP, 9001);
-        sender.send ("/threshold", (int)slider->getValue());
+        sender.send ("/threshold", (float)slider->getValue());
     }
 }
 
@@ -495,3 +505,39 @@ void KlanghabitatConnectorAudioProcessorEditor::styleMenuChanged()
 
       
   }
+
+void KlanghabitatConnectorAudioProcessorEditor::colorChange(int colorID)
+{
+    Colour color = Colours::grey;
+
+    if (colorID == 0) {
+        color = Colours::magenta;
+    }
+    if (colorID == 1) {
+        color = Colours::magenta;
+    }
+    if (colorID == 2) {
+        color = Colours::magenta;
+    }
+    if (colorID == 3) {
+        color = Colours::grey;
+    }
+
+    Attack.setColour(Slider::thumbColourId, color);
+    Attack.setColour(Slider::rotarySliderFillColourId, color);
+
+    Release.setColour(Slider::thumbColourId, color);
+    Release.setColour(Slider::rotarySliderFillColourId, color);
+
+    Ratio.setColour(Slider::thumbColourId, color);
+    Ratio.setColour(Slider::rotarySliderFillColourId, color);
+
+    Threshold.setColour(Slider::thumbColourId, color);
+    Threshold.setColour(Slider::rotarySliderFillColourId, color);
+
+    InGain.setColour(Slider::thumbColourId, color);
+    InGain.setColour(Slider::rotarySliderFillColourId, color);
+
+    OutGain.setColour(Slider::thumbColourId, color);
+    OutGain.setColour(Slider::rotarySliderFillColourId, color);
+}
