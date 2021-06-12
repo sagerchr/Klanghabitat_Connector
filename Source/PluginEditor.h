@@ -49,15 +49,7 @@ public:
     
     void styleMenuChanged();
 
-    void colorChange(int colorID);
-    
-    
-    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> inputAttach;
-    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> outputAttach;
-    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> attackAttach;
-    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> releaseAttach;
-    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> ratioAttach;
-    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> thresholdAttach;
+    void colorChange(int colorID);    
     
 private:
     // This reference is provided as a quick way for your editor to
@@ -86,6 +78,13 @@ private:
     
     Slider Attack, Release, Ratio, Threshold, InGain, OutGain;
     Label AttackLabel, ReleaseLabel, RatioLabel, ThresholdLabel, InGainLabel, OutGainLabel;
+    
+    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> inputAttach;
+    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> outputAttach;
+    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> attackAttach;
+    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> releaseAttach;
+    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> ratioAttach;
+    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> thresholdAttach;
     
     ComboBox deviceList {"select the dedicated device"};
     TextButton connectButton   {};

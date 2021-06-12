@@ -198,6 +198,7 @@ KlanghabitatConnectorAudioProcessorEditor::~KlanghabitatConnectorAudioProcessorE
 {
     disconnectTarget();
     oscReceiver.disconnect();
+    
 }
 
 //==============================================================================
