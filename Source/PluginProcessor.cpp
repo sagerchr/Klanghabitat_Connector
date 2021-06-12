@@ -25,18 +25,20 @@ KlanghabitatConnectorAudioProcessor::KlanghabitatConnectorAudioProcessor()
 
 #endif
 {
-    NormalisableRange<float> inputRange(0.0f, 255.0f, 1.0f);
+    
+    NormalisableRange<float> inputRange(0.1f, 255.0f, 1.0f);
     treeState.createAndAddParameter("input", "input", "input", inputRange, 50.0f ,nullptr, nullptr);
-    NormalisableRange<float> outputRange(0.0f, 255.0f, 1.0f);
+    NormalisableRange<float> outputRange(0.1f, 255.0f, 1.0f);
     treeState.createAndAddParameter("output", "output", "output", outputRange, 50.0f ,nullptr, nullptr);
-    NormalisableRange<float> attackRange(0.1f, 120.0f, 1.0f);
-    treeState.createAndAddParameter("attack", "attack", "attack", attackRange, 50.0f ,nullptr, nullptr);
-    NormalisableRange<float> releaseRange(0.0f, 500.0f, 10.0f);
+    NormalisableRange<float> attackRange(0.1f, 120.0f, 0.1f);
+    treeState.createAndAddParameter("attack", "attack", "attack", attackRange, 10.0f ,nullptr, nullptr);
+    NormalisableRange<float> releaseRange(10.0f, 500.0f, 10.0f);
     treeState.createAndAddParameter("release", "release", "release", releaseRange, 50.0f ,nullptr, nullptr);
-    NormalisableRange<float> ratioRange(1.0f, 20.0f, 1.0f);
-    treeState.createAndAddParameter("ratio", "ratio", "ratio", ratioRange, 50.0f ,nullptr, nullptr);
+    NormalisableRange<float> ratioRange(0.0f, 20.0f, 1.0f);
+    treeState.createAndAddParameter("ratio", "ratio", "ratio", ratioRange, 1.0f ,nullptr, nullptr);
     NormalisableRange<float> thresholdRange(-20.0f, 0.0f, 0.1f);
-    treeState.createAndAddParameter("threshold", "threshold", "threshold", thresholdRange, 50.0f ,nullptr, nullptr);
+    treeState.createAndAddParameter("threshold", "threshold", "threshold", thresholdRange, 0.0f ,nullptr, nullptr);
+    treeState.state = ValueTree("Foo");    /* <--- initialise!!! */
 }
 
 KlanghabitatConnectorAudioProcessor::~KlanghabitatConnectorAudioProcessor()

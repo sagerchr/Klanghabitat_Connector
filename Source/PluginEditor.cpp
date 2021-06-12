@@ -560,10 +560,7 @@ void KlanghabitatConnectorAudioProcessorEditor::colorChange(int colorID)
 
     OutGain.setColour(Slider::thumbColourId, color);
     OutGain.setColour(Slider::rotarySliderFillColourId, color);
-<<<<<<< HEAD
-}
-=======
-    
+
     
     MSButton.setColour(TextButton::textColourOffId, color);
     MSButton.setColour(TextButton::textColourOnId, color);
@@ -583,6 +580,4 @@ void KlanghabitatConnectorAudioProcessorEditor::colorChange(int colorID)
     ListenSideButton.setColour(TextButton::textColourOffId, color);
     ListenSideButton.setColour(TextButton::textColourOnId, color);
 
-
 }
->>>>>>> 5b977bfcdd8931b07b273fba64aef743bb2cfb36
