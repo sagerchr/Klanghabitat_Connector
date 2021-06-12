@@ -59,7 +59,7 @@ void Waveform::colour(int colorID) {
         color = Colours::lightgreen;
     }
     if (colorID == 3) {
-        color = Colours::magenta;
+        color = Colours::orchid;
     }
 }
 

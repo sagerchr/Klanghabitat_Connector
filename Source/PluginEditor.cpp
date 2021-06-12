@@ -15,7 +15,7 @@
 KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEditor (KlanghabitatConnectorAudioProcessor& p)
     : AudioProcessorEditor (&p), processor (p)
 {
-    Colour color = Colours::grey;
+   
     
     //This instance is used for establishing the connection to target. It listens on port 9010
     oscReceiver.addListener(this);
@@ -166,7 +166,7 @@ KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEd
     addAndMakeVisible(connectButton);
     connectButton.onClick = [this] { KlanghabitatConnectorAudioProcessorEditor::connectButtonClicked(); };
     connectButton.setButtonText ("connect to target");
-    connectButton.setColour (TextButton::textColourOffId, Colours::darkorange);
+    connectButton.setColour (TextButton::textColourOffId, color);
     
     //animation.setBounds (1055, 10, 50, 50);
     //addAndMakeVisible(animation);
@@ -232,7 +232,7 @@ void KlanghabitatConnectorAudioProcessorEditor::connectButtonClicked(){
         connectTarget(); //connect to the selected target in the list
         connectButton.setButtonText ("target connected");
         animation.changeColour(Colours::green);
-        connectButton.setColour (TextButton::textColourOffId, Colours::green);
+        connectButton.setColour (TextButton::textColourOffId, color);
         connected = true;
         deviceList.setEnabled(false);
     }
@@ -240,7 +240,7 @@ void KlanghabitatConnectorAudioProcessorEditor::connectButtonClicked(){
         disconnectTarget(); //Disconnect from the current connected target
         connectButton.setButtonText ("connect to target");
         animation.changeColour(Colours::darkorange);
-        connectButton.setColour (TextButton::textColourOffId, Colours::darkorange);
+        connectButton.setColour (TextButton::textColourOffId, color);
         connected = false;
         deviceList.setEnabled(true);
         colorChange(0);
@@ -540,7 +540,7 @@ void KlanghabitatConnectorAudioProcessorEditor::colorChange(int colorID)
         color = Colours::lightgreen;
     }
     if (colorID == 3) {
-        color = Colours::magenta;
+        color = Colours::orchid;
     }
 
     Attack.setColour(Slider::thumbColourId, color);
@@ -560,4 +560,29 @@ void KlanghabitatConnectorAudioProcessorEditor::colorChange(int colorID)
 
     OutGain.setColour(Slider::thumbColourId, color);
     OutGain.setColour(Slider::rotarySliderFillColourId, color);
+<<<<<<< HEAD
 }
+=======
+    
+    
+    MSButton.setColour(TextButton::textColourOffId, color);
+    MSButton.setColour(TextButton::textColourOnId, color);
+
+    MS_SignalButton.setColour(TextButton::textColourOffId, color);
+    MS_SignalButton.setColour(TextButton::textColourOnId, color);
+
+    LeftBypassButton.setColour(TextButton::textColourOffId, color);
+    LeftBypassButton.setColour(TextButton::textColourOnId, color);
+
+    RightBypassButton.setColour(TextButton::textColourOffId, color);
+    RightBypassButton.setColour(TextButton::textColourOnId, color);
+
+    ListenMidButton.setColour(TextButton::textColourOffId, color);
+    ListenMidButton.setColour(TextButton::textColourOnId, color);
+
+    ListenSideButton.setColour(TextButton::textColourOffId, color);
+    ListenSideButton.setColour(TextButton::textColourOnId, color);
+
+
+}
+>>>>>>> 5b977bfcdd8931b07b273fba64aef743bb2cfb36
