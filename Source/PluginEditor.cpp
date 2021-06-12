@@ -40,7 +40,7 @@ KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEd
     OSCBoxDownStream.setBounds(320, 520, 500, 60 );
     addAndMakeVisible (OSCBoxDownStream);
  
-       
+    attackAttach = new AudioProcessorValueTreeState::SliderAttachment (processor.treeState, "attack", Attack);
     Attack.setBounds(700, 80, 120, 120);
     Attack.setRange(0.1,120, 0.1f);
     Attack.setTextValueSuffix (" ms");
@@ -54,6 +54,7 @@ KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEd
     AttackLabel.setJustificationType(Justification::horizontallyCentred);
     Attack.addListener(this);
     
+    releaseAttach = new AudioProcessorValueTreeState::SliderAttachment (processor.treeState, "release", Release);
     Release.setBounds(700, 230, 120, 120);
     Release.setRange(10,500, 10.0f);
     Release.setTextValueSuffix (" ms");
@@ -67,6 +68,7 @@ KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEd
     ReleaseLabel.setJustificationType(Justification::horizontallyCentred);
     Release.addListener(this);
     
+    ratioAttach = new AudioProcessorValueTreeState::SliderAttachment (processor.treeState, "ratio", Ratio);
     Ratio.setBounds(30, 230, 120, 120);
     Ratio.setRange(0.0,20, 1.0f);
     Ratio.setTextValueSuffix (" ");
@@ -80,6 +82,7 @@ KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEd
     RatioLabel.setJustificationType(Justification::horizontallyCentred);
     Ratio.addListener(this);
     
+    thresholdAttach = new AudioProcessorValueTreeState::SliderAttachment (processor.treeState, "threshold", Threshold);
     Threshold.setBounds(30, 80, 120, 120);
     Threshold.setRange(-20.0,0, 0.1f);
     Threshold.setTextValueSuffix (" dB");
@@ -93,6 +96,7 @@ KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEd
     ThresholdLabel.setJustificationType(Justification::horizontallyCentred);
     Threshold.addListener(this);
     
+    inputAttach = new AudioProcessorValueTreeState::SliderAttachment (processor.treeState, "input", InGain);
     InGain.setBounds(30, 380, 120, 120);
     InGain.setRange(0.1,255, 1.0f);
     InGain.setTextValueSuffix (" dB");
@@ -105,6 +109,7 @@ KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEd
     InGain.setColour (Slider::rotarySliderFillColourId, color);
     InGainLabel.setJustificationType(Justification::horizontallyCentred);
     
+    outputAttach = new AudioProcessorValueTreeState::SliderAttachment (processor.treeState, "output", OutGain);
     OutGain.setBounds(700, 380, 120, 120);
     OutGain.setRange(0.1,255, 1.0f);
     OutGain.setTextValueSuffix (" dB");

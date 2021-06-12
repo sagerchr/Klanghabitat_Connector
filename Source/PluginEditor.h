@@ -50,6 +50,15 @@ public:
     void styleMenuChanged();
 
     void colorChange(int colorID);
+    
+    
+    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> inputAttach;
+    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> outputAttach;
+    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> attackAttach;
+    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> releaseAttach;
+    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> ratioAttach;
+    ScopedPointer <AudioProcessorValueTreeState::SliderAttachment> thresholdAttach;
+    
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
