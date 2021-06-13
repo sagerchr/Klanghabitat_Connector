@@ -27,6 +27,7 @@ public:
     void addGainreduct(int sample);
     void update();
     void colour(int colorID);
+    void threshold(float threshold);
     void clearWaveform();
     
     
@@ -40,4 +41,5 @@ private:
     int gainreduct_array[1000];
     int gainreduct = 0;
     Colour color = Colours::grey;
+    float threshold_value = 0;
 };

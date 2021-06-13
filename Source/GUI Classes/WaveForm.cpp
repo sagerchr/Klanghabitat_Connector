@@ -68,6 +68,13 @@ void Waveform::update(){
    repaint();
 }
 
+void Waveform::threshold(float threshold){
+    threshold_value = threshold;
+}
+
+
+
+
 /*Draw the graph with paint method in component*/
 void Waveform::paint (Graphics& g){
 
@@ -91,6 +98,16 @@ void Waveform::paint (Graphics& g){
         }
    
     g.fillRect(501, 0, 9, gainreduct);
+    
+    
+    juce::Line<float> line (juce::Point<float> (0, (-1)*threshold_value),
+                            juce::Point<float> (500, (-1)*threshold_value));
+     
+    g.drawLine (line, 2.0f);
+    
+    
+    
+    
 }
 
 

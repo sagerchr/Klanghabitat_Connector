@@ -465,6 +465,9 @@ void KlanghabitatConnectorAudioProcessorEditor::sliderValueChanged(juce::Slider*
     if(slider == &Threshold){
         sender.connect (TargetIP, 9001);
         sender.send ("/threshold", (float)slider->getValue());
+        waveform_left.threshold((float)slider->getValue());
+        waveform_right.threshold((float)slider->getValue());
+        
     }
 }
 
