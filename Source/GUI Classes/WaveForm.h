@@ -29,7 +29,7 @@ public:
     void colour(int colorID);
     void threshold(float threshold);
     void clearWaveform();
-    
+    void side(int side);
     
     void paint (Graphics& g) override;
     
@@ -40,6 +40,7 @@ private:
     int ch_array[1000];
     int gainreduct_array[1000];
     int gainreduct = 0;
+    int left = 0;
     Colour color = Colours::grey;
     float threshold_value = 0;
 };

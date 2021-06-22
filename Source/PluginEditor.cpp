@@ -25,23 +25,23 @@ KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEd
     oscStreamer.addListener(this);
     oscStreamer.connect (9002); //connect here the Reciver on startup so it will listen to the incumming Downstream from Target
     
-    waveform_left.setBounds (160, 100, 510, 100);
+    waveform_left.setBounds (10, 50, 610, 80);
     addAndMakeVisible (waveform_left);
     
-    waveform_right.setBounds (160, 250, 510, 100);
+    waveform_right.setBounds (10, 130, 610, 80);
     addAndMakeVisible (waveform_right);
     
     Device_Incoming_Message.setBounds (10, 10, 130, 25);
-    addAndMakeVisible(Device_Incoming_Message);
+    //addAndMakeVisible(Device_Incoming_Message);
     
-    OSCBoxDeviceInfo.setBounds(10, 520, 300, 60 );
+    OSCBoxDeviceInfo.setBounds(10, 520, 250, 60 );
     addAndMakeVisible (OSCBoxDeviceInfo);
     
-    OSCBoxDownStream.setBounds(320, 520, 500, 60 );
+    OSCBoxDownStream.setBounds(270, 520, 250, 60 );
     addAndMakeVisible (OSCBoxDownStream);
  
     attackAttach = new AudioProcessorValueTreeState::SliderAttachment (processor.treeState, "attack", Attack);
-    Attack.setBounds(700, 80, 120, 120);
+    Attack.setBounds(310, 260, 100, 100);
     Attack.setRange(0.1,120, 0.1f);
     Attack.setTextValueSuffix (" ms");
     Attack.setSliderStyle(juce::Slider::RotaryVerticalDrag);
@@ -55,7 +55,7 @@ KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEd
     Attack.addListener(this);
     
     releaseAttach = new AudioProcessorValueTreeState::SliderAttachment (processor.treeState, "release", Release);
-    Release.setBounds(700, 230, 120, 120);
+    Release.setBounds(410, 260, 100, 100);
     Release.setRange(10,500, 10.0f);
     Release.setTextValueSuffix (" ms");
     Release.setSliderStyle(juce::Slider::RotaryVerticalDrag);
@@ -69,7 +69,7 @@ KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEd
     Release.addListener(this);
     
     ratioAttach = new AudioProcessorValueTreeState::SliderAttachment (processor.treeState, "ratio", Ratio);
-    Ratio.setBounds(30, 230, 120, 120);
+    Ratio.setBounds(210, 260, 100, 100);
     Ratio.setRange(0.0,20, 1.0f);
     Ratio.setTextValueSuffix (" ");
     Ratio.setSliderStyle(juce::Slider::RotaryVerticalDrag);
@@ -83,7 +83,7 @@ KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEd
     Ratio.addListener(this);
     
     thresholdAttach = new AudioProcessorValueTreeState::SliderAttachment (processor.treeState, "threshold", Threshold);
-    Threshold.setBounds(30, 80, 120, 120);
+    Threshold.setBounds(110, 260, 100, 100);
     Threshold.setRange(-20.0,0, 0.1f);
     Threshold.setTextValueSuffix (" dB");
     Threshold.setSliderStyle(juce::Slider::RotaryVerticalDrag);
@@ -97,7 +97,7 @@ KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEd
     Threshold.addListener(this);
     
     inputAttach = new AudioProcessorValueTreeState::SliderAttachment (processor.treeState, "input", InGain);
-    InGain.setBounds(30, 380, 120, 120);
+    InGain.setBounds(10, 260, 100, 100);
     InGain.setRange(0.1,255, 1.0f);
     InGain.setTextValueSuffix (" dB");
     InGain.setSliderStyle(juce::Slider::RotaryVerticalDrag);
@@ -110,7 +110,7 @@ KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEd
     InGainLabel.setJustificationType(Justification::horizontallyCentred);
     
     outputAttach = new AudioProcessorValueTreeState::SliderAttachment (processor.treeState, "output", OutGain);
-    OutGain.setBounds(700, 380, 120, 120);
+    OutGain.setBounds(510, 260, 100, 100);
     OutGain.setRange(0.1,255, 1.0f);
     OutGain.setTextValueSuffix (" dB");
     OutGain.setSliderStyle(juce::Slider::RotaryVerticalDrag);
@@ -122,47 +122,47 @@ KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEd
     OutGain.setColour (Slider::rotarySliderFillColourId, color);
     OutGainLabel.setJustificationType(Justification::horizontallyCentred);
     
-    MSButton.setBounds(180, 400, 120, 30);
+    MSButton.setBounds(310, 400, 90, 30);
     addAndMakeVisible (MSButton);
     MSButton.onClick = [this] { KlanghabitatConnectorAudioProcessorEditor::MSButtonClicked(); };
-    MSButton.setButtonText ("MS/STERO IN (K5)");
+    MSButton.setButtonText ("MS IN");
     
-    MS_SignalButton.setBounds(300, 400, 120, 30);
+    MS_SignalButton.setBounds(210, 400, 90, 30);
     addAndMakeVisible (MS_SignalButton);
     MS_SignalButton.onClick = [this] { KlanghabitatConnectorAudioProcessorEditor::MS_SignalButtonClicked(); };
-    MS_SignalButton.setButtonText ("MS/STERO OUT (K6)");
+    MS_SignalButton.setButtonText ("MS OUT");
     
-    LeftBypassButton.setBounds(180, 450, 120, 30);
+    LeftBypassButton.setBounds(10, 400, 90, 30);
     addAndMakeVisible (LeftBypassButton);
     LeftBypassButton.onClick = [this] { KlanghabitatConnectorAudioProcessorEditor::LeftBypassButtonClicked(); };
     
-    RightBypassButton.setBounds(540, 450, 120, 30);
+    RightBypassButton.setBounds(110, 400, 90, 30);
     addAndMakeVisible (RightBypassButton);
     RightBypassButton.onClick = [this] { KlanghabitatConnectorAudioProcessorEditor::RightBypassButtonClicked(); };
 
-    ListenMidButton.setBounds(420, 400, 120, 30);
+    ListenMidButton.setBounds(410, 400, 90, 30);
     addAndMakeVisible (ListenMidButton);
     ListenMidButton.onClick = [this] { KlanghabitatConnectorAudioProcessorEditor::ListenMidButtonClicked(); };
-    ListenMidButton.setButtonText ("MID (K8)");
+    ListenMidButton.setButtonText ("MID");
     
-    ListenSideButton.setBounds(540, 400, 120, 30);
+    ListenSideButton.setBounds(510, 400, 90, 30);
     addAndMakeVisible (ListenSideButton);
     ListenSideButton.onClick = [this] { KlanghabitatConnectorAudioProcessorEditor::ListenSideButtonClicked(); };
-    ListenSideButton.setButtonText ("SIDE (K7)");
+    ListenSideButton.setButtonText ("SIDE");
     
-    addAndMakeVisible (AutoConnectButton);
+    //addAndMakeVisible (AutoConnectButton);
     AutoConnectButton.onClick = [this] { updateToggleState (&AutoConnectButton, "local"); };
     AutoConnectButton.setToggleState(true,dontSendNotification);
     
     
 
     //#######################Connection########################################################
-    deviceList.setBounds(160,10,290,25);
+    deviceList.setBounds(10,10,290,25);
     addAndMakeVisible(deviceList);
     
     deviceList.onChange = [this] { KlanghabitatConnectorAudioProcessorEditor::connectButtonClicked();}; //////////////////////
         
-    connectButton.setBounds(460, 10, 200, 25);
+    connectButton.setBounds(320, 10, 200, 25);
     addAndMakeVisible(connectButton);
     connectButton.onClick = [this] { KlanghabitatConnectorAudioProcessorEditor::connectButtonClicked(); };
     connectButton.setButtonText ("connect to target");
@@ -178,20 +178,23 @@ KlanghabitatConnectorAudioProcessorEditor::KlanghabitatConnectorAudioProcessorEd
     //stringToTarget.setBounds(520, 460, 500, 25);
     //addAndMakeVisible(stringToTarget);
     
-    Watchdog.setBounds(620, 460, 500, 25);
-    addAndMakeVisible(Watchdog);
+    //Watchdog.setBounds(620, 460, 500, 25);
+    //addAndMakeVisible(Watchdog);
     
     AutoConnectButton.setColour(juce::ToggleButton::textColourId,juce::Colours::white);
     AutoConnectButton.setColour(juce::ToggleButton::tickColourId,juce::Colours::white);
     AutoConnectButton.setColour(juce::ToggleButton::tickDisabledColourId,juce::Colours::white);
     AutoConnectButton.setBounds(680, 13, 100, 20);
     
+    waveform_left.side(1);
+    waveform_right.side(0);
+
     listen = false;
     
     startTimer(1000);
     
-    setResizable (true, true);
-    setSize (850, 600);
+    setResizable (false, false);
+    setSize (630, 450);
 }
 
 KlanghabitatConnectorAudioProcessorEditor::~KlanghabitatConnectorAudioProcessorEditor()
@@ -543,8 +546,9 @@ void KlanghabitatConnectorAudioProcessorEditor::colorChange(int colorID)
     if (colorID == 2) {
         color = Colours::lightgreen;
     }
+    const Colour rose { 0xffF984E5 };
     if (colorID == 3) {
-        color = Colours::orchid;
+        color = rose;
     }
 
     Attack.setColour(Slider::thumbColourId, color);
